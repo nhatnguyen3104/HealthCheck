@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "694627595412",
+    "firebase_url": "https://healthtracker-d1a20-default-rtdb.firebaseio.com",
+    "project_id": "healthtracker-d1a20",
+    "storage_bucket": "healthtracker-d1a20.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694627595412:android:83a940ee4807b96536b081",
+        "android_client_info": {
+          "package_name": "com.example.healthcheck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvdr8EeaB0EFOXO5vDbmGVsPOvhd77hgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694627595412:android:0e6706d06e98c57636b081",
+        "android_client_info": {
+          "package_name": "com.example.healthtracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvdr8EeaB0EFOXO5vDbmGVsPOvhd77hgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

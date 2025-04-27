@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/healthDataFragment"
+        android:title="Đo sức khỏe"
+        android:icon="@drawable/ic_health" />
+    <item
+        android:id="@+id/historyFragment"
+        android:title="Lịch sử"
+        android:icon="@drawable/ic_history" />
+    <item
+        android:id="@+id/settingFragment"
+        android:title="Cài đặt"
+        android:icon="@drawable/ic_setting" />
+
+</menu>
