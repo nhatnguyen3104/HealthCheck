@@ -10,9 +10,9 @@
         android:id="@+id/bgImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="Background"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_login"
-        android:contentDescription="Background"
         tools:ignore="HardcodedText" />
 
     <!-- Lớp phủ mờ để dễ đọc -->
@@ -23,34 +23,35 @@
 
     <!-- Nội dung chính -->
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="16dp"
             android:text="Hỏi AI về sức khỏe"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorOnBackground"
-            android:layout_marginBottom="16dp"
             tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/etUserQuestion"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:hint="Bạn đang gặp vấn đề gì?"
-            android:gravity="top|start"
-            android:padding="12dp"
             android:background="@drawable/bg_edittext"
+            android:gravity="top|start"
+            android:hint="Bạn đang gặp vấn đề gì?"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
             android:textColor="?attr/colorOnBackground"
             android:textColorHint="?attr/colorOnSurfaceVariant"
-            android:inputType="textMultiLine"
             tools:ignore="HardcodedText" />
 
         <com.google.android.material.button.MaterialButton

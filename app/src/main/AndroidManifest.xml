@@ -15,31 +15,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthCheck"
         tools:targetApi="31">
-
-        <!-- SplashActivity là màn hình khởi động đầu tiên -->
         <activity
-            android:name=".ui.SplashActivity"
-            android:exported="true" >
+            android:name=".ui.intro.IntroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.terms.TermsActivity"
+            android:exported="false" /> <!-- SplashActivity là màn hình khởi động đầu tiên -->
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Các activity khác -->
+        </activity> <!-- Các activity khác -->
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".ui.auth.RegisterActivity"
-            android:exported="false" />
-
-        <!-- Xóa intent-filter của MainActivity -->
+            android:exported="false" /> <!-- Xóa intent-filter của MainActivity -->
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
     </application>
 
 </manifest>

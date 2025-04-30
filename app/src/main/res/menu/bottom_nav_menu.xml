@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_history" />
     <item
         android:id="@+id/healthAssistantFragment"
-        android:title="Chat box"
+        android:title="Chat bot"
         android:icon="@drawable/ic_chat" />
     <item
         android:id="@+id/settingFragment"
