@@ -18,10 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Kiểm tra thời hạn đăng nhập trước khi setContentView
+        if (shouldRedirectToLogin()) {
+            navigateToLogin()
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        checkLoginExpiration()
 
         setSupportActionBar(binding.toolbar)
 
@@ -30,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
         NavigationUI.setupWithNavController(binding.bottomNav, navController)
-
         binding.bottomNav.setupWithNavController(navController)
     }
 
@@ -38,32 +42,22 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         return navHostFragment.navController.navigateUp() || super.onSupportNavigateUp()
     }
-    private fun checkLoginExpiration() {
+
+    // ✅ Trả về true nếu cần chuyển sang Login
+    private fun shouldRedirectToLogin(): Boolean {
         val sharedPreferences = getSharedPreferences("user_preferences", Context.MODE_PRIVATE)
         val lastLoginTime = sharedPreferences.getLong("last_login_time", 0)
 
-        if (lastLoginTime == 0L) {
-            // Nếu không có thông tin đăng nhập, yêu cầu đăng nhập
-            navigateToLogin()
-            return
-        }
+        if (lastLoginTime == 0L) return true
 
         val currentTime = System.currentTimeMillis()
-        val timeDifference = currentTime - lastLoginTime
-        val thirtyDaysInMillis = 30L * 24 * 60 * 60 * 1000 // 30 ngày tính bằng mili giây
-
-        if (timeDifference > thirtyDaysInMillis) {
-            // Nếu thời gian đăng nhập đã quá 30 ngày, yêu cầu đăng nhập lại
-            navigateToLogin()
-        } else {
-            // Nếu chưa quá 30 ngày, người dùng vẫn còn đăng nhập
-        }
+        val thirtyDaysInMillis = 30L * 24 * 60 * 60 * 1000
+        return (currentTime - lastLoginTime > thirtyDaysInMillis)
     }
-    // Điều hướng tới màn hình đăng nhập
+
     private fun navigateToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
-        finish() // Kết thúc MainActivity nếu không cần quay lại
+        finish()
     }
-
 }

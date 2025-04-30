@@ -1,6 +1,8 @@
 package com.example.healthcheck.viewmodel
 
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.healthcheck.model.HealthData
 import androidx.lifecycle.ViewModel
 import com.example.healthcheck.repository.FirebaseRepository
@@ -14,6 +16,8 @@ class HealthDataViewModel : ViewModel() {
     private var healthDataListener: ValueEventListener? = null
     private var currentHealthData: HealthData? = null
     private val firebaseRepository = FirebaseRepository()
+    private val _alertMessage = MutableLiveData<String?>()
+    val alertMessage: LiveData<String?> get() = _alertMessage
 
     fun getRealtimeHealthData(onDataChanged: (HealthData) -> Unit) {
         val userId = auth.currentUser?.uid ?: return
@@ -48,6 +52,27 @@ class HealthDataViewModel : ViewModel() {
         currentHealthData?.let {
             firebaseRepository.saveHealthDataHistory(it, onResult)
         } ?: onResult(false, "Không có dữ liệu hiện tại")
+    }
+
+    fun checkHealthData(heartRate: Int, spo2: Int, temperature: Double) {
+        when {
+            heartRate < 50 || heartRate > 120 -> {
+                _alertMessage.value = "Nhịp tim bất thường: $heartRate bpm"
+            }
+            spo2 < 90 -> {
+                _alertMessage.value = "Nồng độ oxy thấp: $spo2%"
+            }
+            temperature > 38.0f || temperature < 35.0f -> {
+                _alertMessage.value = "Nhiệt độ cơ thể bất thường: $temperature°C"
+            }
+            else -> {
+                _alertMessage.value = null // bình thường, không cảnh báo
+            }
+        }
+    }
+
+    fun resetAlert() {
+        _alertMessage.value = null
     }
 
 

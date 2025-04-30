@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BB86FC</color>
+    <color name="colorPrimaryVariant">#3700B3</color>
+    <color name="colorOnPrimary">#000000</color>
+    <color name="colorSecondary">#03DAC6</color>
+    <color name="colorSecondaryVariant">#03DAC6</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorBackground">#121212</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="colorSurface">#121212</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+
+    <color name="background_overlay">#80000000</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_link">#82B1FF</color>
+
+    <color name="screen_background">#000000</color>
+    <color name="card_background">#121212</color>
+    <color name="button_color">@color/colorPrimary</color>
+
+    <color name="background">#121212</color>
+    <color name="text_secondary">#CCCCCC</color>
+    <color name="button_primary">#80CBC4</color> <!-- nhạt hơn teal -->
+    <color name="error">#EF9A9A</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>
+

@@ -1,5 +1,6 @@
 package com.example.healthcheck.ui.healthdata
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,21 @@ class HealthDataFragment : Fragment() {
             binding.tvHeartRate.text = "Nhịp tim: ${healthData.heartRate}"
             binding.tvSpO2.text = "SpO2: ${healthData.spo2}"
             binding.tvTemperature.text = "Nhiệt độ: ${healthData.temperature}"
+
+            //check
+            viewModel.checkHealthData(
+                healthData.heartRate,
+                healthData.spo2,
+                healthData.temperature
+            )
         }
+        viewModel.alertMessage.observe(viewLifecycleOwner) { message ->
+            message?.let {
+                triggerAlert(it)
+                viewModel.resetAlert()
+            }
+        }
+
 
         binding.btnSaveData.setOnClickListener {
             viewModel.saveCurrentHealthData { success, message ->
@@ -45,6 +60,13 @@ class HealthDataFragment : Fragment() {
                 }
             }
         }
+    }
+    private fun triggerAlert(message: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Cảnh báo sức khỏe")
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
     override fun onDestroyView() {

@@ -17,4 +17,8 @@ class AuthViewModel : ViewModel() {
     }
 
     fun getCurrentUserId(): String? = authRepository.getCurrentUserId()
+
+    fun resetPassword(email: String, onResult: (Boolean, String?) -> Unit) {
+        authRepository.resetPassword(email, onResult)
+    }
 }

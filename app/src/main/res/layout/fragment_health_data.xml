@@ -1,31 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screen_background"
     tools:context=".ui.healthdata.HealthDataFragment">
+
+    <!-- Background image -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login"
+        android:contentDescription="Background" />
+
+    <!-- Overlay for readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_overlay" />
+
+    <!-- ProgressBar -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_gravity="center"
         android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-
+    <!-- Nội dung chính -->
     <LinearLayout
         android:orientation="vertical"
-        android:gravity="center"
         android:padding="24dp"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView android:id="@+id/tvHeartRate" android:text="Nhịp tim: --" android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/tvSpO2" android:text="SpO2: --" android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/tvTemperature" android:text="Nhiệt độ: --" android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <!-- CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            android:layout_marginTop="100dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/card_background">
 
-        <Button android:id="@+id/btnSaveData" android:text="Lưu dữ liệu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="32dp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvHeartRate"
+                    android:text="Nhịp tim: --"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tvSpO2"
+                    android:text="SpO2: --"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tvTemperature"
+                    android:text="Nhiệt độ: --"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Nút Lưu -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveData"
+            android:text="Lưu dữ liệu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/button_color"
+            android:textColor="@android:color/white" />
     </LinearLayout>
-
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

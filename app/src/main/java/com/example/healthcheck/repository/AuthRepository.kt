@@ -29,4 +29,15 @@ class AuthRepository {
     }
 
     fun getCurrentUserId(): String? = firebaseAuth.currentUser?.uid
+
+    fun resetPassword(email: String, callback: (Boolean, String?) -> Unit) {
+        firebaseAuth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.message)
+                }
+            }
+    }
 }

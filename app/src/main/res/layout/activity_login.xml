@@ -6,19 +6,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.LoginActivity">
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center"
+
+    <!-- Background image -->
+    <ImageView
+        android:id="@+id/bgImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login"
+        android:contentDescription="Background" />
 
-        <EditText android:id="@+id/etEmail" android:hint="Email" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etPassword" android:hint="Password" android:inputType="textPassword" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <!-- Overlay for readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_overlay" />
 
-        <Button android:id="@+id/btnLogin" android:text="Đăng nhập" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/tvRegister" android:text="Chưa có tài khoản? Đăng ký" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="16dp"/>
-    </LinearLayout>
+    <!-- Scrollable form -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/ic_logo_removebg"
+                android:contentDescription="App Logo" />
+
+            <!-- Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mật khẩu"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Đăng nhập -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đăng nhập"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="16dp"
+                app:cornerRadius="24dp"
+                app:backgroundTint="@color/button_color" />
+
+            <!-- Quên mật khẩu -->
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quên mật khẩu?"
+                android:textColor="@color/text_link"
+                android:layout_marginTop="8dp" />
+
+            <!-- Đăng ký -->
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa có tài khoản? Đăng ký"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

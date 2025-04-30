@@ -6,18 +6,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.RegisterActivity">
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center"
+
+    <!-- Background image -->
+    <ImageView
+        android:id="@+id/bgImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login"
+        android:contentDescription="Background" />
 
-        <EditText android:id="@+id/etEmail" android:hint="Email" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/etPassword" android:hint="Password" android:inputType="textPassword" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <!-- Overlay for readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_overlay" />
 
-        <Button android:id="@+id/btnRegister" android:text="Đăng ký" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    </LinearLayout>
+    <!-- Scrollable form -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/ic_logo_removebg"
+                android:contentDescription="App Logo" />
+
+            <!-- Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mật khẩu"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Đăng ký -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đăng ký"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="16dp"
+                app:cornerRadius="24dp"
+                android:elevation="2dp"
+                app:backgroundTint="@color/button_color" />
+
+            <!-- Đã có tài khoản? Đăng nhập -->
+            <TextView
+                android:id="@+id/tvAlreadyHaveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đã có tài khoản? Đăng nhập"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

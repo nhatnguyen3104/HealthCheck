@@ -19,4 +19,5 @@
         android:name="com.example.healthcheck.ui.setting.SettingFragment"
         android:label="Cài đặt" />
 
+
 </navigation>
