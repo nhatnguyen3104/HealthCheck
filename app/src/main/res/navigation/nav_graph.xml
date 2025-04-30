@@ -15,6 +15,10 @@
         android:name="com.example.healthcheck.ui.history.HistoryFragment"
         android:label="History" />
     <fragment
+        android:id="@+id/healthAssistantFragment"
+        android:name="com.example.healthcheck.ui.assistant.HealthAssistantFragment"
+        android:label="Chat Box" />
+    <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.healthcheck.ui.setting.SettingFragment"
         android:label="Cài đặt" />

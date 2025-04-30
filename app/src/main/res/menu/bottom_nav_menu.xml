@@ -9,6 +9,10 @@
         android:title="Lịch sử"
         android:icon="@drawable/ic_history" />
     <item
+        android:id="@+id/healthAssistantFragment"
+        android:title="Chat box"
+        android:icon="@drawable/ic_chat" />
+    <item
         android:id="@+id/settingFragment"
         android:title="Cài đặt"
         android:icon="@drawable/ic_setting" />

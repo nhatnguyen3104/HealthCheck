@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Ảnh nền -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login"
+        android:contentDescription="Background"
+        tools:ignore="HardcodedText" />
+
+    <!-- Lớp phủ mờ để dễ đọc -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_overlay" />
+
+    <!-- Nội dung chính -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hỏi AI về sức khỏe"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnBackground"
+            android:layout_marginBottom="16dp"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/etUserQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Bạn đang gặp vấn đề gì?"
+            android:gravity="top|start"
+            android:padding="12dp"
+            android:background="@drawable/bg_edittext"
+            android:textColor="?attr/colorOnBackground"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:inputType="textMultiLine"
+            tools:ignore="HardcodedText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAskAI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Gửi"
+            android:textColor="?attr/colorOnPrimary"
+            app:backgroundTint="?attr/colorPrimary"
+            app:cornerRadius="12dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvAIResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Phản hồi từ AI sẽ hiển thị ở đây."
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+</FrameLayout>
