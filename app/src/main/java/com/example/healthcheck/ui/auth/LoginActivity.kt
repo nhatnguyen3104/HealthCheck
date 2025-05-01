@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthcheck.databinding.ActivityLoginBinding
@@ -21,18 +22,42 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnLogin.setOnClickListener {
+
+            binding.tilEmail.error = null
+            binding.tilPassword.error = null
+
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
-            authViewModel.login(email, password) { success, error ->
-                if (success) {
-                    saveLoginTime()
-                    Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
-                    navigateToMain()
-                } else {
-                    Toast.makeText(this, error ?: "Đăng nhập thất bại", Toast.LENGTH_SHORT).show()
+            var isValid = true
+
+            if (email.isEmpty()) {
+                binding.tilEmail.error = "Vui lòng nhập email"
+                isValid = false
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                // Kiểm tra định dạng email cơ bản phía client
+                binding.tilEmail.error = "Định dạng email không hợp lệ"
+                isValid = false
+            }
+
+            if (password.isEmpty()) {
+                binding.tilPassword.error = "Vui lòng nhập mật khẩu"
+                isValid = false
+            }
+
+
+            if (isValid) {
+                authViewModel.login(email, password) { success, error ->
+                    if (success) {
+                        saveLoginTime()
+                        Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                        navigateToMain()
+                    } else {
+                        Toast.makeText(this, error ?: "Đăng nhập thất bại", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+
         }
 
         binding.tvRegister.setOnClickListener {

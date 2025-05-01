@@ -15,7 +15,7 @@ class HistoryFragment : Fragment() {
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel = HistoryViewModel()
+    private lateinit var viewModel: HistoryViewModel
     private val adapter = HistoryAdapter()
 
     override fun onCreateView(
@@ -29,24 +29,19 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = HistoryViewModel()
         binding.rvHistory.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHistory.adapter = adapter
 
         showLoading(true)
 
-        viewModel.startListeningHistory { historyList ->
+        viewModel.startListeningHistory()
+
+        viewModel.historyList.observe(viewLifecycleOwner) { historyList ->
             showLoading(false)
             adapter.submitList(historyList)
 
-            if (historyList.isNullOrEmpty()) {
-                binding.tvEmpty.visibility = View.VISIBLE
-                Log.d("DEBUG", "Danh sách trống, hiển thị tvEmpty")
-            } else {
-                binding.tvEmpty.visibility = View.GONE
-                Log.d("DEBUG", "Có dữ liệu, ẩn tvEmpty")
-            }
-
-            Log.d("DEBUG", "historyList size: ${historyList?.size}")
+            binding.tvEmpty.visibility = if (historyList.isNullOrEmpty()) View.VISIBLE else View.GONE
         }
     }
 
