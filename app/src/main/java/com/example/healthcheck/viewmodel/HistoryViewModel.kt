@@ -21,12 +21,22 @@ class HistoryViewModel : ViewModel() {
 
     private var historyListener: ValueEventListener? = null
 
+    private val _healthHistory = MutableLiveData<List<HealthData>>()
+    val healthHistory: LiveData<List<HealthData>> get() = _healthHistory
+
     fun startListeningHistory() {
-        historyListener = repository.addHealthHistoryListener { list ->
-            Log.d("HistoryViewModel", "History updated: ${list.size} items")
-            _historyLiveData.postValue(list)
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            repository.listenHealthHistory(uid) { list ->
+                _historyList.postValue(list)
+                Log.d("HistoryViewModel", "History updated: ${list.size} items")
+            }
+        } else {
+            _historyList.postValue(emptyList())
         }
     }
+
+
 
     override fun onCleared() {
         super.onCleared()
@@ -35,5 +45,16 @@ class HistoryViewModel : ViewModel() {
             Log.d("HistoryViewModel", "Listener cleared in ViewModel")
         }
     }
+    fun fetchHealthHistory(uid: String) {
+        repository.listenHealthHistory(uid) { historyList ->
+            _healthHistory.postValue(historyList)
+        }
+    }
+    fun deleteHealthData(data: HealthData, onResult: (Boolean, String?) -> Unit) {
+        data.key?.let {
+            repository.deleteHealthDataByKey(it, onResult)
+        } ?: onResult(false, "Không có khóa dữ liệu")
+    }
+
 
 }

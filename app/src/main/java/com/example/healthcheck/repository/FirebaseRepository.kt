@@ -14,27 +14,57 @@ class FirebaseRepository {
     private val auth = FirebaseAuth.getInstance()
     private val TAG = "FirebaseRepository"
 
-    fun listenHealthData(onDataReceived: (HealthData) -> Unit) {
-        val userId = auth.currentUser?.uid
-        if (userId == null) {
-            Log.e("FirebaseRepository", "User ID is null. User not authenticated?")
-            return
-        }
+//    fun listenHealthData(onDataReceived: (HealthData) -> Unit) {
+//        val userId = auth.currentUser?.uid
+//        if (userId == null) {
+//            Log.e("FirebaseRepository", "User ID is null. User not authenticated?")
+//            return
+//        }
+//
+//        val ref = database.getReference("du_lieu_suc_khoe").child(userId)
+//
+//        ref.addValueEventListener(object : com.google.firebase.database.ValueEventListener {
+//            override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
+//                val data = snapshot.getValue(HealthData::class.java)
+//                Log.d("FirebaseRepository", "Health data received: $data")
+//                data?.let { onDataReceived(it) }
+//            }
+//
+//            override fun onCancelled(error: com.google.firebase.database.DatabaseError) {
+//                Log.e("FirebaseRepository", "Failed to read data: ${error.message}")
+//            }
+//        })
+//    }
 
-        val ref = database.getReference("du_lieu_suc_khoe").child(userId)
+    fun listenHealthData(onDataReceived: (HealthData?) -> Unit) {
+        val ref = database.getReference("du_lieu_suc_khoe")
 
-        ref.addValueEventListener(object : com.google.firebase.database.ValueEventListener {
-            override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
-                val data = snapshot.getValue(HealthData::class.java)
-                Log.d("FirebaseRepository", "Health data received: $data")
-                data?.let { onDataReceived(it) }
-            }
+        // Lấy bản ghi push mới nhất
+        ref.orderByKey().limitToLast(1)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var latestData: HealthData? = null
+                    for (child in snapshot.children) {
+                        latestData = child.getValue(HealthData::class.java)
+                        Log.d(TAG, "Health data received: $latestData")
+                        break
+                    }
 
-            override fun onCancelled(error: com.google.firebase.database.DatabaseError) {
-                Log.e("FirebaseRepository", "Failed to read data: ${error.message}")
-            }
-        })
+                    if (latestData == null) {
+                        Log.w(TAG, "No valid HealthData found in snapshot: ${snapshot.value}")
+                    }
+
+                    onDataReceived(latestData)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e(TAG, "Failed to read data: ${error.message}")
+                }
+            })
+
+        Log.d(TAG, "Listening to du_lieu_suc_khoe (latest record)")
     }
+
 
     fun saveHealthDataHistory(data: HealthData, onResult: (Boolean, String?) -> Unit) {
         val userId = auth.currentUser?.uid
@@ -149,5 +179,45 @@ class FirebaseRepository {
         historyRef.removeEventListener(listener)
         Log.d(TAG, "History listener removed")
     }
+
+    fun listenHealthHistory(uid: String, onDataChange: (List<HealthData>) -> Unit) {
+        val historyRef = FirebaseDatabase.getInstance().getReference("history").child(uid)
+        Log.d("FirebaseRepository", "History listener added")
+
+        historyRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val historyList = mutableListOf<HealthData>()
+                for (child in snapshot.children) {
+                    val data = child.getValue(HealthData::class.java)
+                    data?.key = child.key
+                    data?.let { historyList.add(it) }
+                }
+                Log.d("FirebaseRepository", "Total history fetched: ${historyList.size}")
+                onDataChange(historyList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("FirebaseRepository", "Failed to read history: ${error.message}")
+            }
+        })
+    }
+    fun deleteHealthDataByKey(key: String, onResult: (Boolean, String?) -> Unit) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId == null) {
+            onResult(false, "Người dùng chưa đăng nhập")
+            return
+        }
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("history")
+            .child(userId)
+            .child(key)
+
+        ref.removeValue()
+            .addOnSuccessListener { onResult(true, null) }
+            .addOnFailureListener { e -> onResult(false, e.message) }
+    }
+
+
 }
 

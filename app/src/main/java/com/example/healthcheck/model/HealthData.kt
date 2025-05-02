@@ -1,7 +1,10 @@
 package com.example.healthcheck.model
 
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.database.PropertyName
 
+@IgnoreExtraProperties
 data class HealthData(
     @get:PropertyName("nhip_tim")
     @set:PropertyName("nhip_tim")
@@ -15,6 +18,7 @@ data class HealthData(
     @set:PropertyName("nhiet_do")
     var temperature: Double = 0.0,
 
-    var timestamp: Long = 0
+    var timestamp: Long = 0,
+    @get:Exclude var key: String? = null
 )
 
