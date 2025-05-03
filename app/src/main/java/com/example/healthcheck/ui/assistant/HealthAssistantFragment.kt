@@ -54,7 +54,7 @@ class HealthAssistantFragment : Fragment() {
 
         val request = Request.Builder()
             .url("https://openrouter.ai/api/v1/chat/completions")
-            .addHeader("Authorization", "Bearer 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")
+            .addHeader("Authorization", "Bearer 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")
             .addHeader("Content-Type", "application/json")
             .addHeader("HTTP-Referer", "yourapp://")
             .post(requestBody)

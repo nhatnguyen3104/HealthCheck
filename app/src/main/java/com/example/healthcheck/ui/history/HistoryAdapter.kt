@@ -24,14 +24,19 @@ class HistoryAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: HealthData) {
-            binding.tvHeartRate.text = "Nhịp tim: ${data.heartRate}"
-            binding.tvSpO2.text = "SpO2: ${data.spo2}"
-            binding.tvTemperature.text = "Nhiệt độ: ${data.temperature}"
+            binding.tvHeartRate.text =
+                if (data.measureHeartRate) "Nhịp tim: ${data.heartRate}" else ""
+            binding.tvSpO2.text =
+                if (data.measureSpO2) "Nồng độ Oxy: ${data.spo2}" else ""
+            binding.tvTemperature.text =
+                if (data.measureTemperature) "Nhiệt độ: ${data.temperature}" else ""
+            binding.tvName.text = "Người đo: ${data.name ?: "Không rõ"}"
+            binding.tvTime.text = "Thời gian: ${data.time ?: "Không rõ"}"
 
             var hasWarning = false
             val warnings = mutableListOf<String>()
 
-            if (data.heartRate < 60 || data.heartRate > 100) {
+            if (data.measureHeartRate && (data.heartRate ?: 0 < 60 || data.heartRate ?: 0 > 100)) {
                 binding.tvHeartRate.setTextColor(Color.RED)
                 warnings.add("⚠️ Cảnh báo: Nhịp tim không bình thường")
                 hasWarning = true
@@ -39,15 +44,15 @@ class HistoryAdapter(
                 binding.tvHeartRate.setTextColor(Color.BLACK)
             }
 
-            if (data.spo2 < 95) {
+            if (data.measureSpO2 && (data.spo2 ?: 100 < 95)) {
                 binding.tvSpO2.setTextColor(Color.RED)
-                warnings.add("⚠️ Cảnh báo: SpO2 thấp")
+                warnings.add("⚠️ Cảnh báo: Nồng độ Oxy thấp")
                 hasWarning = true
             } else {
                 binding.tvSpO2.setTextColor(Color.BLACK)
             }
 
-            if (data.temperature < 36 || data.temperature > 37.5) {
+            if (data.measureTemperature && ((data.temperature ?: 0.0) < 36.0 || (data.temperature ?: 0.0) > 37.5)) {
                 binding.tvTemperature.setTextColor(Color.RED)
                 warnings.add("⚠️ Cảnh báo: Nhiệt độ bất thường")
                 hasWarning = true
@@ -55,12 +60,15 @@ class HistoryAdapter(
                 binding.tvTemperature.setTextColor(Color.BLACK)
             }
 
-            if (warnings.isNotEmpty()) {
-                binding.tvWarningLabel.text = warnings.joinToString("\n")
-                binding.tvWarningLabel.visibility = View.VISIBLE
-            } else {
-                binding.tvWarningLabel.visibility = View.GONE
-            }
+//            if (warnings.isNotEmpty()) {
+//                binding.tvWarningLabel.text = warnings.joinToString("\n")
+//                binding.tvWarningLabel.visibility = View.VISIBLE
+//            } else {
+//                binding.tvWarningLabel.visibility = View.GONE
+//            }
+
+            binding.tvWarningLabel.visibility = if (warnings.isNotEmpty()) View.VISIBLE else View.GONE
+            binding.tvWarningLabel.text = warnings.joinToString("\n")
 
             binding.tvWarning.visibility = if (hasWarning) View.VISIBLE else View.GONE
 

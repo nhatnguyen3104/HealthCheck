@@ -66,20 +66,27 @@ class FirebaseRepository {
     }
 
 
-    fun saveHealthDataHistory(data: HealthData, onResult: (Boolean, String?) -> Unit) {
+    fun saveHealthDataHistory(
+        data: HealthData,
+        name: String,
+        time: String,
+        onResult: (Boolean, String?) -> Unit
+    ) {
         val userId = auth.currentUser?.uid
         if (userId == null) {
             onResult(false, "User not authenticated")
             return
         }
 
+        val fullData = data.copy(name = name, time = time)
+
         val historyRef = database.getReference("history").child(userId)
         val newRecord = historyRef.push()
 
-        newRecord.setValue(data)
+        newRecord.setValue(fullData)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("FirebaseRepository", "Health data saved to history.")
+                    Log.d("FirebaseRepository", "Health data saved with name & time.")
                     onResult(true, null)
                 } else {
                     Log.e("FirebaseRepository", "Save failed: ${task.exception?.message}")
@@ -87,6 +94,7 @@ class FirebaseRepository {
                 }
             }
     }
+
 
     fun getHealthDataHistory(onResult: (List<HealthData>) -> Unit) {
         val userId = auth.currentUser?.uid ?: return

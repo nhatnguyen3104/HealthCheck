@@ -19,6 +19,13 @@ data class HealthData(
     var temperature: Double = 0.0,
 
     var timestamp: Long = 0,
-    @get:Exclude var key: String? = null
+    @get:Exclude var key: String? = null,
+
+    val name: String? = null,
+    val time: String? = null,
+
+    val measureHeartRate: Boolean = false,
+    val measureSpO2: Boolean = false,
+    val measureTemperature: Boolean = false
 )
 

@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="SpO2:"
+                android:text="Nồng độ Oxy:"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
 
@@ -47,6 +47,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nhiệt độ:"
+                android:layout_marginBottom="4dp"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên:"
+                android:layout_marginBottom="4dp"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời gian:"
+                android:layout_marginBottom="4dp"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
 
@@ -84,6 +101,8 @@
         android:focusable="true"
         android:padding="8dp"
         android:src="@drawable/ic_delete"
+        android:elevation="4dp"
+        android:stateListAnimator="@animator/elevation_animation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

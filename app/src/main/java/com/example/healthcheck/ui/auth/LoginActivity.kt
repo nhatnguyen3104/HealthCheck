@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthcheck.databinding.ActivityLoginBinding
 import com.example.healthcheck.ui.MainActivity
 import com.example.healthcheck.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,6 +20,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                )
+        supportActionBar?.hide()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -49,14 +57,22 @@ class LoginActivity : AppCompatActivity() {
             if (isValid) {
                 authViewModel.login(email, password) { success, error ->
                     if (success) {
-                        saveLoginTime()
-                        Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
-                        navigateToMain()
+                        val user = FirebaseAuth.getInstance().currentUser
+                        if (user != null && user.isEmailVerified) {
+                            saveLoginTime()
+                            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                            navigateToMain()
+                        } else {
+                            FirebaseAuth.getInstance().signOut()
+                            Toast.makeText(this, "Vui lòng xác minh email trước khi đăng nhập", Toast.LENGTH_LONG).show()
+                        }
                     } else {
                         Toast.makeText(this, error ?: "Đăng nhập thất bại", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+
+
 
         }
 
