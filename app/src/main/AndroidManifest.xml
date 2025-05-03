@@ -10,7 +10,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthCheck"
@@ -20,7 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.terms.TermsActivity"
-            android:exported="false" /> <!-- SplashActivity là màn hình khởi động đầu tiên -->
+            android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">
@@ -29,7 +29,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Các activity khác -->
+        </activity>
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="false" />
