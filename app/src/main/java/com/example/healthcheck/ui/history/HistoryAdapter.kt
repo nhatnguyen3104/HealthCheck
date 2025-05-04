@@ -52,7 +52,7 @@ class HistoryAdapter(
                 binding.tvSpO2.setTextColor(Color.BLACK)
             }
 
-            if (data.measureTemperature && ((data.temperature ?: 0.0) < 36.0 || (data.temperature ?: 0.0) > 37.5)) {
+            if (data.measureTemperature && ((data.temperature ?: 0.0) < 31.0 || (data.temperature ?: 0.0) > 35)) {
                 binding.tvTemperature.setTextColor(Color.RED)
                 warnings.add("⚠️ Cảnh báo: Nhiệt độ bất thường")
                 hasWarning = true

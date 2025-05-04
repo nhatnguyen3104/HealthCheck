@@ -97,7 +97,7 @@ class HealthDataViewModel : ViewModel() {
         }
 
         temperature?.let {
-            if (it < 35.0 || it > 38.0) {
+            if (it < 31.0 || it > 35.0) {
                 alertMessages.add("Nhiệt độ bất thường: $it°C")
             }
         }

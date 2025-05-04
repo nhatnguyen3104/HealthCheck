@@ -94,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nhiệt độ" />
             </LinearLayout>
+
         </LinearLayout>
 
 

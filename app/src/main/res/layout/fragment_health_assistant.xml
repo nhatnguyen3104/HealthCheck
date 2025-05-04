@@ -34,48 +34,79 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:text="Hỏi AI về sức khỏe"
             android:textColor="?attr/colorOnBackground"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
-        <EditText
-            android:id="@+id/etUserQuestion"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewChat"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/bg_edittext"
-            android:gravity="top|start"
-            android:hint="Bạn đang gặp vấn đề gì?"
-            android:inputType="textMultiLine"
-            android:padding="12dp"
-            android:textColor="?attr/colorOnBackground"
-            android:textColorHint="?attr/colorOnSurfaceVariant"
-            tools:ignore="HardcodedText" />
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAskAI"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etUserQuestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edittext"
+                android:gravity="top|start"
+                android:hint="Bạn đang gặp vấn đề gì?"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="?attr/colorOnBackground"
+                android:textColorHint="?attr/colorOnSurfaceVariant"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAskAI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gửi"
+                android:textColor="?attr/colorOnPrimary"
+                app:backgroundTint="?attr/colorPrimary"
+                app:cornerRadius="12dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Gửi"
-            android:textColor="?attr/colorOnPrimary"
-            app:backgroundTint="?attr/colorPrimary"
-            app:cornerRadius="12dp"
-            tools:ignore="HardcodedText" />
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
 
         <TextView
-            android:id="@+id/tvAIResponse"
+            android:id="@+id/tvDisclaimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:background="@drawable/bg_edittext"
-            android:layout_marginTop="24dp"
-            android:text="Phản hồi từ AI sẽ hiển thị ở đây."
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:text="!! Thông tin từ chatbot chỉ mang tính tham khảo !!"
             android:textColor="?attr/colorOnBackground"
-            android:textSize="16sp"
-            tools:ignore="HardcodedText" />
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:padding="8dp"
+            android:visibility="visible" />
     </LinearLayout>
 </FrameLayout>
