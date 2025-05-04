@@ -1,5 +1,6 @@
 package com.example.healthcheck.ui.healthdata
 
+import android.R.attr.delay
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +10,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.healthcheck.databinding.FragmentHealthDataBinding
 import com.example.healthcheck.model.HealthData
 import com.example.healthcheck.viewmodel.HealthDataViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -71,7 +75,7 @@ class HealthDataFragment : Fragment() {
             updateHealthUI(healthData)
         }
 
-        viewModel.measureOptions.observe(viewLifecycleOwner) {options ->
+        viewModel.measureOptions.observe(viewLifecycleOwner) { options ->
             binding.cbSelectAll.isChecked = options.isAllSelected
             binding.cbHeartRate.isChecked = options.isAllSelected || options.measureHeartRate
             binding.cbSpO2.isChecked = options.isAllSelected || options.measureSpO2
@@ -97,7 +101,11 @@ class HealthDataFragment : Fragment() {
             val name = binding.etName.text.toString().trim()
             val options = viewModel.measureOptions.value
             if (options == null || (!options.measureHeartRate && !options.measureSpO2 && !options.measureTemperature)) {
-                Toast.makeText(requireContext(), "Vui lòng chọn ít nhất một mục để lưu", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Vui lòng chọn ít nhất một mục để lưu",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
             if (name.isEmpty()) {
@@ -115,13 +123,29 @@ class HealthDataFragment : Fragment() {
         }
     }
 
+    //    private fun triggerAlert(message: String) {
+//        AlertDialog.Builder(requireContext())
+//            .setTitle("Cảnh báo sức khỏe")
+//            .setMessage(message)
+//            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+//            .show()
+//    }
     private fun triggerAlert(message: String) {
-        AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireContext())
             .setTitle("Cảnh báo sức khỏe")
             .setMessage(message)
-            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-            .show()
+            .create()
+
+        dialog.show()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500)
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

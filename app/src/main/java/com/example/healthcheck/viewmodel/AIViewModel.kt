@@ -18,6 +18,13 @@ class AIViewModel : ViewModel() {
         addMessage(ChatMessage(question, isFromUser = true))
         viewModelScope.launch {
             try {
+                val danhSachChat = arrayOf(
+                    "Chào bạn!",
+                    "Hôm nay bạn thế nào?",
+                    "Bạn có gì cần hỏi tôi sao.",
+                    "Hello.",
+                    "Rất vui được trò chuyện cùng bạn."
+                )
                 val response = witRepository.askWit(question)
                 Log.d("WitResponse", "Full Response: ${response.entities}")
 
@@ -95,6 +102,9 @@ class AIViewModel : ViewModel() {
                         """.trimIndent()
                             else -> "Không có thông tin cụ thể về chỉ số này."
                         }
+                    }
+                    topIntent.name == "chao"-> {
+                        danhSachChat.random()
                     }
 
                     else -> "Tôi chưa có thông tin cụ thể về câu hỏi này, bạn có thể diễn đạt lại nhé."
