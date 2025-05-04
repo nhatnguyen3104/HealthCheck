@@ -56,6 +56,7 @@ class AIViewModel : ViewModel() {
                             "nhietdo" -> """
                             ▪️ Nhiệt độ cơ thể trên 38°C có thể là dấu hiệu của sốt.
                             ▪️ Nếu dưới 35°C, đó có thể là hạ thân nhiệt – bạn cần tìm cách làm ấm cơ thể ngay.
+                            ▪️ Tuy nhiên nếu bạn đo ở đầu ngón tay thì nhiệt độ bình thường sẽ dao động từ 31°C đến 35°C
                         """.trimIndent()
                             else -> "Không có thông tin cụ thể về chỉ số này."
                         }

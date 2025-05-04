@@ -25,12 +25,12 @@ class ChatAdapter(private val messages: MutableList<ChatMessage>) :
         holder.binding.apply {
             tvMessage.text = message.message
             if (message.isFromUser) {
-                ivAvatar.setImageResource(R.drawable.ic_user)
+                ivAvatar.setImageResource(R.drawable._ic_user)
                 (tvMessage.layoutParams as LinearLayout.LayoutParams).gravity = Gravity.END
                 (ivAvatar.layoutParams as LinearLayout.LayoutParams).gravity = Gravity.END
 
             } else {
-                ivAvatar.setImageResource(R.drawable.ic_ai)
+                ivAvatar.setImageResource(R.drawable._ic_ai)
                 container.gravity = Gravity.START
             }
         }
