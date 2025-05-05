@@ -1,4 +1,4 @@
-package com.example.healthcheck.view
+package com.example.healthcheck.ui.assistant
 
 data class WitResponse(
     val text: String,

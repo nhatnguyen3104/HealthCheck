@@ -1,4 +1,4 @@
-package com.example.healthcheck.view
+package com.example.healthcheck.ui.assistant
 
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -14,5 +14,3 @@ interface WitApiService {
         @Query("q") query: String
     ): WitResponse
 }
-
-

@@ -1,7 +1,7 @@
 package com.example.healthcheck.repository
 
-import com.example.healthcheck.view.WitApiService
-import com.example.healthcheck.view.WitResponse
+import com.example.healthcheck.ui.assistant.WitApiService
+import com.example.healthcheck.ui.assistant.WitResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
