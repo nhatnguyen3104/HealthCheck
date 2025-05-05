@@ -36,20 +36,22 @@ class HistoryAdapter(
             var hasWarning = false
             val warnings = mutableListOf<String>()
 
-            if (data.measureHeartRate && (data.heartRate ?: 0 < 60 || data.heartRate ?: 0 > 100)) {
+            if (data.measureHeartRate && (data.heartRate ?: 0 < 60 || data.heartRate ?: 0 > 110)) {
                 binding.tvHeartRate.setTextColor(Color.RED)
                 warnings.add("⚠️ Cảnh báo: Nhịp tim không bình thường")
                 hasWarning = true
             } else {
-                binding.tvHeartRate.setTextColor(Color.BLACK)
+                val defaultTextColor = binding.tvHeartRate.textColors.defaultColor
+                binding.tvHeartRate.setTextColor(defaultTextColor)
             }
 
-            if (data.measureSpO2 && (data.spo2 ?: 100 < 95)) {
+            if (data.measureSpO2 && (data.spo2 ?: 100 < 93)) {
                 binding.tvSpO2.setTextColor(Color.RED)
                 warnings.add("⚠️ Cảnh báo: Nồng độ Oxy thấp")
                 hasWarning = true
             } else {
-                binding.tvSpO2.setTextColor(Color.BLACK)
+                val defaultTextColor = binding.tvHeartRate.textColors.defaultColor
+                binding.tvHeartRate.setTextColor(defaultTextColor)
             }
 
             if (data.measureTemperature && ((data.temperature ?: 0.0) < 31.0 || (data.temperature ?: 0.0) > 35)) {
@@ -57,7 +59,8 @@ class HistoryAdapter(
                 warnings.add("⚠️ Cảnh báo: Nhiệt độ bất thường")
                 hasWarning = true
             } else {
-                binding.tvTemperature.setTextColor(Color.BLACK)
+                val defaultTextColor = binding.tvHeartRate.textColors.defaultColor
+                binding.tvHeartRate.setTextColor(defaultTextColor)
             }
 
 //            if (warnings.isNotEmpty()) {

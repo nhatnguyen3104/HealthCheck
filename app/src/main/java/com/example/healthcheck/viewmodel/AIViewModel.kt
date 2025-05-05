@@ -88,7 +88,7 @@ class AIViewModel : ViewModel() {
                     topIntent.name == "tu_van_suc_khoe" && chiSoNormalized != null -> {
                         when (chiSoNormalized) {
                             "spo2" -> """
-                            ▪️ Nồng độ oxy trong máu bình thường là từ 95% đến 100%.
+                            ▪️ Nồng độ oxy trong máu bình thường là từ 93% đến 100%.
                             ▪️ Nếu dưới 94%, bạn cần theo dõi và tham khảo ý kiến bác sĩ.
                         """.trimIndent()
                             "nhiptim" -> """

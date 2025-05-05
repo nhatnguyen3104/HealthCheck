@@ -15,6 +15,8 @@ class IntroActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle("Điều khoản sử dụng")
             .setMessage("""
+                Chào mừng! [Kiểm tra sức khỏe]. Theo dõi sức khỏe, hiểu cơ thể. Bắt đầu ngay!
+                
                 Ứng dụng cần sử dụng Internet để kết nối AI và chức năng rung để thông báo sức khỏe.
                 
                 Bằng cách tiếp tục, bạn đồng ý với điều khoản này.

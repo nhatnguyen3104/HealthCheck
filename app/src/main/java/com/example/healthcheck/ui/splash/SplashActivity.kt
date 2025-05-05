@@ -29,7 +29,6 @@ class SplashActivity : AppCompatActivity() {
         splashLogo.startAnimation(fadeIn)
 
 
-        // Tạo độ trễ để hiển thị Splash
         Handler(Looper.getMainLooper()).postDelayed({
             val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
             val agreed = prefs.getBoolean("user_agreed", false)
