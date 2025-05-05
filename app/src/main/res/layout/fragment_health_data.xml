@@ -38,8 +38,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:background="@drawable/frame_border_background"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="24dp"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:background="@drawable/border_textview"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border_textview"
             android:text="Tích vào ô bạn muốn đo:"
             android:textColor="@color/text_primary"
             android:textSize="18sp" />
@@ -82,16 +82,16 @@
 
                 <CheckBox
                     android:id="@+id/cbSpO2"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:text="Nồng độ Oxy" />
 
                 <CheckBox
                     android:id="@+id/cbTemperature"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:text="Nhiệt độ" />
             </LinearLayout>
 
@@ -142,6 +142,16 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/frame_border_background"
+            android:padding="10dp"
+            android:text="⚠️Lưu ý: Nếu bạn muốn lưu dữ liệu thì nên nhập tên người đo trước khi chọn đo."
+            android:textColor="@color/text_primary"
+            android:textSize="18sp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
             android:layout_width="match_parent"
@@ -162,9 +172,12 @@
             android:id="@+id/btnSaveData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:elevation="4dp"
             android:text="Lưu dữ liệu"
             android:textColor="@android:color/white"
             app:backgroundTint="@color/button_color"
-            app:cornerRadius="16dp" />
+            app:cornerRadius="16dp"
+            app:strokeColor="#CCCCCC"
+            app:strokeWidth="2dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

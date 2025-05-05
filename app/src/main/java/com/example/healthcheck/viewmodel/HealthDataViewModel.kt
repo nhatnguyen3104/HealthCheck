@@ -85,19 +85,19 @@ class HealthDataViewModel : ViewModel() {
         val alertMessages = mutableListOf<String>()
 
         heartRate?.let {
-            if (it < 50 || it > 120) {
+            if (it != 0 && (it < 50 || it > 120)) {
                 alertMessages.add("Nhịp tim bất thường: $it bpm")
             }
         }
 
         spo2?.let {
-            if (it < 90) {
+            if (it < 90 && it !=0) {
                 alertMessages.add("Nồng độ oxy thấp: $it%")
             }
         }
 
         temperature?.let {
-            if (it < 31.0 || it > 35.0) {
+            if (it != 0.0 && (it < 30.0 || it > 38.0)) {
                 alertMessages.add("Nhiệt độ bất thường: $it°C")
             }
         }

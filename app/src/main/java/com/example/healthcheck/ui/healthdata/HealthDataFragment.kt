@@ -139,7 +139,7 @@ class HealthDataFragment : Fragment() {
         dialog.show()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(500)
+            delay(400)
             if (dialog.isShowing) {
                 dialog.dismiss()
             }

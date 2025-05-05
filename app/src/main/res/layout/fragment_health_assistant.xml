@@ -34,9 +34,9 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
             android:gravity="center"
             android:text="Hỏi AI về sức khỏe"
             android:textColor="?attr/colorOnBackground"
@@ -76,12 +76,15 @@
                 android:id="@+id/btnAskAI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:elevation="4dp"
                 android:text="Gửi"
                 android:textColor="?attr/colorOnPrimary"
                 app:backgroundTint="?attr/colorPrimary"
                 app:cornerRadius="12dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                app:strokeColor="#CCCCCC"
+                app:strokeWidth="2dp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
@@ -99,14 +102,14 @@
             android:id="@+id/tvDisclaimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:padding="8dp"
             android:text="!! Thông tin từ chatbot chỉ mang tính tham khảo !!"
             android:textColor="?attr/colorOnBackground"
             android:textSize="14sp"
-            android:gravity="center"
             android:textStyle="italic"
-            android:padding="8dp"
             android:visibility="visible" />
     </LinearLayout>
 </FrameLayout>

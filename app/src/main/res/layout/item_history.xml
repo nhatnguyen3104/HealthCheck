@@ -46,24 +46,26 @@
                 android:id="@+id/tvTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nhiệt độ:"
                 android:layout_marginBottom="4dp"
+                android:text="Nhiệt độ:"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên:"
                 android:layout_marginBottom="4dp"
+                android:text="Tên:"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thời gian:"
                 android:layout_marginBottom="4dp"
+                android:text="Thời gian:"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
 
@@ -71,21 +73,22 @@
                 android:id="@+id/tvWarningLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_red_dark"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:visibility="gone"
                 android:layout_marginTop="8dp"
-                android:text="⚠️ Cảnh báo" />
+                android:text="⚠️ Cảnh báo"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/tvWarning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Bạn nên tới cơ sở y tế để tham khảo ý kiến bác sĩ"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
-                android:visibility="gone"
-                android:text="Bạn nên tới cơ sở y tế để tham khảo ý kiến bác sĩ"
-                android:layout_marginTop="8dp"/>
+                android:visibility="gone" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -98,12 +101,14 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:contentDescription="Xóa bản ghi"
+        android:elevation="4dp"
         android:focusable="true"
         android:padding="8dp"
         android:src="@drawable/ic_delete"
-        android:elevation="4dp"
         android:stateListAnimator="@animator/elevation_animation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#CCCCCC"
+        app:strokeWidth="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

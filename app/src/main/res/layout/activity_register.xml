@@ -38,12 +38,28 @@
             <!-- Logo -->
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="32dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="20dp"
                 android:contentDescription="App Logo"
                 android:src="@drawable/ic_logo_removebg" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/bg_textview_inset"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:paddingRight="16dp"
+
+                android:paddingBottom="8dp"
+                android:text="Đăng Ký"
+                android:textColor="@color/text_primary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+
+                />
 
             <!-- Email -->
             <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +82,7 @@
                 android:id="@+id/tilPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -106,7 +122,10 @@
                 android:text="Đăng ký"
                 android:textColor="@android:color/white"
                 app:backgroundTint="@color/button_color"
-                app:cornerRadius="24dp" />
+                app:cornerRadius="24dp"
+                app:strokeColor="#CCCCCC"
+                app:strokeWidth="2dp"
+                />
 
             <!-- Đã có tài khoản? Đăng nhập -->
             <TextView

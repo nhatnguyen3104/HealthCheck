@@ -13,3 +13,35 @@
 .externalNativeBuild
 .cxx
 local.properties
+# General Secrets Files (Chứa Wit.ai token, Firebase keys, etc.)
+.env
+config.local.*
+secrets.*
+credentials/
+*.pem
+*.key
+
+# Firebase Specific
+# --- MUST ignore ---
+# serviceAccountKey.json # Hoặc tên file/đường dẫn cụ thể của bạn
+# *.json # Dùng cẩn thận nếu có file json không nhạy cảm khác
+
+# --- Recommended to ignore ---
+google-services.json
+GoogleService-Info.plist
+.firebase/
+firebase-export-*
+
+# Operating System Files / IDE specific
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Build Artifacts / Dependencies (Ví dụ)
+node_modules/
+dist/
+build/
+*.log
